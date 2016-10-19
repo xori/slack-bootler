@@ -1,4 +1,4 @@
-# bootler [![wercker status](https://app.wercker.com/status/3e11407d5a86d397f9a520f2df3297cb/s/master "wercker status")](https://app.wercker.com/project/bykey/3e11407d5a86d397f9a520f2df3297cb)
+# bootler [![wercker status](https://app.wercker.com/status/17dc81cf0b43f96f48934376ab884295/s/master "wercker status")](https://app.wercker.com/project/byKey/17dc81cf0b43f96f48934376ab884295)
 
 A slack bot, written in javascript.
 

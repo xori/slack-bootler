@@ -1,0 +1,29 @@
+{
+  "name": "slackbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --use_strict ./src/Server.js",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.11.6",
+    "mocha": "^3.0.0"
+  },
+  "dependencies": {
+    "@slack/client": "^3.5.4",
+    "fs-extra": "^0.30.0",
+    "request": "^2.75.0",
+    "roll": "^1.2.0",
+    "walk-sync": "^0.3.1"
+  }
+}

@@ -27,10 +27,12 @@ bot.on(E.MESSAGE, function(message) {
     console.log(message);
     if(message.is_ephemeral || message.hidden) return;
 
-    console.log(`${(new Date).toISOString()}:${bot.dataStore.getChannelById(message.channel).name}:${bot.dataStore.getUserById(message.user).name}> ${message.text}`);
+    let _channel = bot.dataStore.getChannelById(message.channel);
+
+    console.log(`${(new Date).toISOString()}:${_channel ? _channel.name : "Unknown"}:${bot.dataStore.getUserById(message.user).name}> ${message.text}`);
     engine.handle(message, bot);
   } catch (e) {
-    console.error(e);
-    bot.sendMessage("Whoa, had a hard time with that comment. Should probably add that as an [issue](https://github.com/xori/bootler/issues)", message.channel);
+    console.error("ERROR>>>", e);
+    // bot.sendMessage("Whoa, had a hard time with that comment. Should probably add that as an [issue](https://github.com/xori/bootler/issues)", message.channel);
   }
 });

@@ -52,7 +52,8 @@ module.exports = class Engine {
       if(capture) {
         this.plugins[i].callback(message, capture, function(m) {
           client.sendMessage(m, message.channel, () => {
-            console.log(`${(new Date).toISOString()}:${client.dataStore.getChannelById(message.channel).name}:bootler> ${m}`);
+            let _channel = client.dataStore.getChannelById(message.channel);
+            console.log(`${(new Date).toISOString()}:${_channel ? _channel.name : "unknown"}:bootler> ${m}`);
           });
         })
       }

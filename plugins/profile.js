@@ -11,7 +11,7 @@ module.exports = function(engine) {
   let profiles = brain("profiles") || {};
   brain("profiles", profiles);
 
-  engine.on(/set(?: my)? (.+) to (.+)$/i, (m, p, send) => {
+  engine.on(/^set(?: my)? (.+) to (.+)$/i, (m, p, send) => {
     let profiles = brain("profiles");
     let user = profiles[m.user] || {};
     user[cleanKey(p[1])] = cleanKey(p[2]);
@@ -20,7 +20,7 @@ module.exports = function(engine) {
     send("done.");
   });
 
-  engine.on(/remove my (.*)/i, (m, p, send) => {
+  engine.on(/^remove my (.*)/i, (m, p, send) => {
     let profiles = brain("profiles");
     let user = profiles[m.user] || {};
     delete user[cleanKey(p[1])];
@@ -29,7 +29,7 @@ module.exports = function(engine) {
     send("done.");
   });
 
-  engine.on(/show(?: me)? <@(\w+)>[\s's]*(?: profile)?/i, (m, p, send) => {
+  engine.on(/^show(?: me)? <@(\w+)>[\s's]*(?: profile)?/i, (m, p, send) => {
     const profiles = brain("profiles");
     const user = profiles[p[1]] || {};
     const slackuser = engine.client.dataStore.getUserById(p[1]) || {};
@@ -40,13 +40,13 @@ module.exports = function(engine) {
     send(result);
   });
 
-  engine.on(/what(?:'s| is) <@(\w+)>[\s's]* (.+)/i, (m, p, send) => {
+  engine.on(/^what(?:'s| is) <@(\w+)>[\s's]* (.+)/i, (m, p, send) => {
     const profiles = brain("profiles");
     const user = profiles[p[1]] || {};
     send(user[cleanKey(p[2])] || "I don't know.");
   });
 
-  engine.on(/what(?:'s| is) my (.+)/i, (m, p, send) => {
+  engine.on(/^what(?:'s| is) my (.+)/i, (m, p, send) => {
     const profiles = brain("profiles");
     const user = profiles[m.user] || {};
     send(user[cleanKey(p[1])] || "I don't know.");

@@ -24,7 +24,7 @@ bot.on(E.MESSAGE, function(message) {
       ts: '1476840860.000004',
       team: 'T2R4X14AH' }
     */
-    
+
     if(message.is_ephemeral || message.hidden) return;
 
     let _channel = bot.dataStore.getChannelById(message.channel);

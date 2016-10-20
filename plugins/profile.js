@@ -31,7 +31,7 @@ module.exports = function(engine) {
 
   engine.on(/show(?: me)? <@(\w+)>(?: profile)?/i, (m, p, send) => {
     const profiles = brain("profiles");
-    const user = profiles[m.user] || {};
+    const user = profiles[p[1]] || {};
     const slackuser = engine.client.dataStore.getUserById(p[1]) || {};
     let result = `*${slackuser.profile.real_name || slackuser.name}*\n`;
     for(let key in user) {

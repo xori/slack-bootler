@@ -29,7 +29,7 @@ module.exports = function(engine) {
     send("done.");
   });
 
-  engine.on(/show(?: me)? <@(\w+)>(?: profile)?/i, (m, p, send) => {
+  engine.on(/show(?: me)? <@(\w+)>[\s's]*(?: profile)?/i, (m, p, send) => {
     const profiles = brain("profiles");
     const user = profiles[p[1]] || {};
     const slackuser = engine.client.dataStore.getUserById(p[1]) || {};
@@ -40,7 +40,7 @@ module.exports = function(engine) {
     send(result);
   });
 
-  engine.on(/what(?:'s| is) <@(\w+)> (.+)/i, (m, p, send) => {
+  engine.on(/what(?:'s| is) <@(\w+)>[\s's]* (.+)/i, (m, p, send) => {
     const profiles = brain("profiles");
     const user = profiles[p[1]] || {};
     send(user[cleanKey(p[2])] || "I don't know.");

@@ -7,7 +7,7 @@ module.exports = function(engine) {
       let regex = new RegExp(key, "i");
       var match = params[1].match(regex);
       if(match) {
-        if(/:[\w_]+:/.test(quips[key]))
+        if(/^:[\w_]+:$/.test(quips[key]))
           // is emoji
           engine.react(message, quips[key]);
         else

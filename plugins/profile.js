@@ -1,7 +1,7 @@
 const brain = require('../src/Brain');
 
 function cleanKey(str) {
-  var m = str.match(/<http:\/\/.+\|(.+)>/i);
+  var m = str.match(/<(?:.*)\|(.+)>/i);
   if(m) return m[1];
   else return str;
 }
@@ -14,7 +14,7 @@ module.exports = function(engine) {
   engine.on(/set(?: my)? (.+) to (.+)$/i, (m, p, send) => {
     let profiles = brain("profiles");
     let user = profiles[m.user] || {};
-    user[cleanKey(p[1])] = p[2];
+    user[cleanKey(p[1])] = cleanKey(p[2]);
     profiles[m.user] = user;
     brain('profiles', profiles);
     send("done.");

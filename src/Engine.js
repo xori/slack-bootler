@@ -83,6 +83,12 @@ module.exports = class Engine {
     });
   }
 
+  // For sending a random response.
+  random(list) {
+    var r = Math.floor(Math.random() * list.length);
+    return list[r];
+  }
+
   // For reporting errors if they occur.
   report(err) {
     if(err) console.error(err);

@@ -20,26 +20,20 @@ module.exports = function(engine) {
   });
 
   engine.on( /:(hand|raised_hand_with_fingers_splayed|open_hands|spock-hand|raised_hands):/, (m, p, send) => {
-    let packet = {
-      channel: m.channel,
-      type: E.REACTION_ADDED,
-      timestamp: m.ts
-    };
-    engine.client._chat.makeAPICall('reactions.add', { name: p[1] }, packet)
+    engine.react(m, p[1]);
   });
 }
 
 module.exports.test = function(engine) {
-  var user = engine.activeUserId;
   describe('Hello Plugin', function() {
     it('should say hi', function(done) {
-      engine.test(`hi <@${user}>`, function(text) { done() })
+      engine.test(`hi @bot`, function(text) { done() })
     })
     it('should respond to hey', function(done) {
-      engine.test(`Hey <@${user}>`, function(text) { done() })
+      engine.test(`Hey @bot`, function(text) { done() })
     })
     it('should respond to confusion', function(done) {
-      engine.test(`<@${user}>?`, function(text) { done() })
+      engine.test(`@bot?`, function(text) { done() })
     })
   })
 }

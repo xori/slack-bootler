@@ -13,6 +13,15 @@ module.exports = class Engine {
     this.http = require('request');
   }
 
+  react(message, emoji) {
+    emoji = emoji.replace(/:/g, '');
+    let packet = {
+      channel: message.channel,
+      timestamp: message.ts
+    };
+    this.client._chat.makeAPICall('reactions.add', { name: emoji }, packet)
+  }
+
   ////
   // .on(/hello world$/i, function(message, capture, send){
   //   send('goodbye world.');
@@ -40,7 +49,7 @@ module.exports = class Engine {
     let minimalContent = content
     let _messageExtract = new RegExp("^(?:[\w\s]+)?<@"+ userid +">\s*(.+)$");
     if(mentioned && (_messageExtract).test(content)){
-      minimalContent = content.match(_messageExtract)[1]
+      minimalContent = content.match(_messageExtract)[1].trim()
     }
     for(let i = 0; i < this.plugins.length; i++) {
       if(!mentioned && this.plugins[i].mention) continue;
@@ -64,9 +73,10 @@ module.exports = class Engine {
   // For testing, runs the .handle() with an overridden Discord Client.
   test(str, callback, override) {
     this.handle(Object.assign({
-      text: str,
-      user: `<@${this.client.activeUserId}>`
+      text: str.replace(/@bot/g, `<@${this.client.activeUserId}>`),
+      user: 'jimmy'
     }, override || {}), {
+      activeUserId: this.client.activeUserId,
       sendMessage: function(result) {
         callback(result);
       }

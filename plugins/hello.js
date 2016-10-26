@@ -32,7 +32,7 @@ module.exports = function(engine) {
     send("https://app.wercker.com/status/3e11407d5a86d397f9a520f2df3297cb/m/" + p[1]);
   });
 
-  engine.on(/:(hand|raised_hand_with_fingers_splayed|open_hands|spock-hand|raised_hands):/, (m, p, send) => {
+  engine.on(/:(hand|raised_hand_with_fingers_splayed|fist|open_hands|spock-hand|raised_hands):/, (m, p, send) => {
     engine.react(m, p[1]);
   });
 }

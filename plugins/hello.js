@@ -39,7 +39,7 @@ module.exports = function(engine) {
   engine.respond(/you forgot to :(.+): <https:\/\/.+.slack.com\/archives\/(\w+)\/p(\d+)>/i, (m, p, send) => {
     let id, channel;
     // parse the timestamp and convert it to the messed up ts.
-    try { id = parseInt(p[3]) / 1000000; }
+    try { id = (parseInt(p[3]) / 1000000).toFixed(6); }
     catch (e) { console.log(p); return; }
 
     // try and get the channel id and if you can't you probably already have it.
@@ -47,7 +47,7 @@ module.exports = function(engine) {
     catch (e) {
       channel = p[2]; // if direct message, this *should* never happen in reality.
     }
-    
+
     console.log(`emoting: ${id} on ${channel} with a :${p[1]}:`);
     engine.react({ channel: channel, ts: id }, p[1]);
     send("my bad.");

@@ -36,9 +36,13 @@ module.exports = function(engine) {
    * This function forces bootler to emote to a past message. For example,
    * me> @bootler you forgot to 🍻 https://archive.slack/.../p1477510419000192
    */
-  engine.respond(/you forgot to :(.+): (?:https:\/\/102chat.slack.com\/archives\/)(\w+)(?:\/)p(\d+)/i, (m, p, send) => {
+  engine.respond(/you forgot to :(.+): <https:\/\/.+.slack.com\/archives\/(\w+)\/p(\d+)>/i, (m, p, send) => {
     let id, channel = p[2];
-    try { id = parseInt(p[3]); id /= 1000000; } catch (e) { return; }
+    try { 
+      id = parseInt(p[3]) / 1000000;
+    } catch (e) { 
+      console.log(p); return; 
+    }
     engine.react({ channel: channel, ts: id }, p[1]);
     send("my bad.");
   });

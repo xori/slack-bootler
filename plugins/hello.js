@@ -50,7 +50,7 @@ module.exports = function(engine) {
 
     console.log(`emoting: ${id} on ${channel} with a :${p[1]}:`);
     engine.react({ channel: channel, ts: id }, p[1]);
-    send("my bad.");
+    send(engine.random(["my bad.", "fixed.", "whoops.", "I'll do that right now.", "thanks for reminding me."]));
   });
 
   engine.on(/:(hand|raised_hand_with_fingers_splayed|fist|open_hands|spock-hand|raised_hands):/, (m, p, send) => {

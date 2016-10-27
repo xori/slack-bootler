@@ -32,6 +32,17 @@ module.exports = function(engine) {
     send("https://app.wercker.com/status/3e11407d5a86d397f9a520f2df3297cb/m/" + p[1]);
   });
 
+  /**
+   * This function forces bootler to emote to a past message. For example,
+   * me> @bootler you forgot to 🍻 https://archive.slack/.../p1477510419000192
+   */
+  engine.respond(/you forgot to :(.+): (?:https:\/\/102chat.slack.com\/archives\/)(\w+)(?:\/)p(\d+)/i, (m, p, send) => {
+    let id, channel = p[2];
+    try { id = parseInt(p[3]); id /= 1000000; } catch (e) { return; }
+    engine.react({ channel: channel, ts: id }, p[1]);
+    send("my bad.");
+  });
+
   engine.on(/:(hand|raised_hand_with_fingers_splayed|fist|open_hands|spock-hand|raised_hands):/, (m, p, send) => {
     engine.react(m, p[1]);
   });

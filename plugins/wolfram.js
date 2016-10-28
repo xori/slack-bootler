@@ -1,6 +1,9 @@
 module.exports = function(engine) {
-  let wolfram = new (require('node-wolfram'))(engine.config.wolfram);
+  const fs = require('fs-extra');
+  const path = require('path');
+  fs.ensureDirSync(path.resolve(engine.config.brain, 'wolfram'));
 
+  let wolfram = new (require('node-wolfram'))(engine.config.wolfram);
   /**
    * me> wolf me intergrate dx = 2x + 5 + C
    * me> fact: Doctor Strange movie
@@ -32,17 +35,23 @@ module.exports = function(engine) {
             console.log("wolfram: ", msg);
             return;
           }
-          //require('fs-extra').writeJsonSync('./output.json', results);
-          msg.text = results.pod[0].subpod[0].plaintext[0];
-          msg.opts = msg.opts || {}
-          msg.opts.attachments = [{
-            "fallback": results.pod[1].subpod[0].plaintext[0],
-            "image_url": results.pod[1].subpod[0].img[0].$.src
-          }]
-          engine.client.updateMessage(msg, (e)=>{
-            if(e) throw e;
-            console.log("I wolfed!", msg);
-          });
+
+          engine.http.get(results.pod[1].subpod[0].img[0].$.src)
+            .on('error', function(err) {
+              console.log(err)
+            }).on('end', function(err) {
+              msg.text = results.pod[0].subpod[0].plaintext[0];
+              msg.opts = msg.opts || {}
+              msg.opts.attachments = [{
+                "fallback": results.pod[1].subpod[0].plaintext[0],
+                "image_url": `${engine.config.host}/wolfram/${msg.ts}.gif`
+              }]
+              engine.client.updateMessage(msg, (e)=>{
+                if(e) throw e;
+                console.log("I wolfed!", msg, msg.opts);
+              });
+            })
+            .pipe(fs.createWriteStream(path.join(engine.config.brain, 'wolfram', msg.ts + ".gif")))
       });
     })
   })

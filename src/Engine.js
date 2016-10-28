@@ -4,6 +4,7 @@ module.exports = class Engine {
     this.client = client;
     this.config = require('./ConfigLoader');
     this.brain = require('./Brain');
+    this.router = require('./Router');
 
     this.plugins = [];
     this._plugins = require('./PluginLoader');

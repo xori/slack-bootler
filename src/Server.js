@@ -24,11 +24,12 @@ bot.on(E.MESSAGE, function(message) {
       ts: '1476840860.000004',
       team: 'T2R4X14AH' }
     */
+    
     if(message.is_ephemeral || message.hidden) return;
 
     // let _channel = bot.dataStore.getChannelById(message.channel);
     // console.log(`${(new Date).toISOString()}:${_channel ? _channel.name : "Unknown"}:${bot.dataStore.getUserById(message.user).name}> ${message.text}`);
-    
+
     engine.handle(message, bot);
   } catch (e) {
     let _channel = bot.dataStore.getChannelById(message.channel);

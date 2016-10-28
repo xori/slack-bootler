@@ -32,7 +32,7 @@ module.exports = function(engine) {
             console.log("wolfram: ", msg);
             return;
           }
-          require('fs-extra').writeJsonSync('./output.json', results);
+          //require('fs-extra').writeJsonSync('./output.json', results);
           msg.text = results.pod[0].subpod[0].plaintext[0];
           msg.opts = msg.opts || {}
           msg.opts.attachments = [{

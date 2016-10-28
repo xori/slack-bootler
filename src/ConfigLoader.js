@@ -13,6 +13,7 @@ try {
 config.token = process.env.SLACK_TOKEN || config.token;
 config.google_api = process.env.GOOGLE_API || config.google_api;
 config.brain = process.env.SLACK_BRAIN || config.brain || "./brain";
+config.wolfram = process.env.SLACK_WOLFRAM || config.wolfram;
 config.bootup = new Date();
 
 module.exports = config;

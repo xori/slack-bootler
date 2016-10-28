@@ -1,6 +1,5 @@
-let wolfram = new (require('node-wolfram'))("P99K9L-ERGRUPW84Y");
-
 module.exports = function(engine) {
+  let wolfram = new (require('node-wolfram'))(engine.config.wolfram);
 
   /**
    * me> wolf me intergrate dx = 2x + 5 + C

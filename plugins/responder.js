@@ -12,7 +12,7 @@ module.exports = function(engine) {
           engine.react(message, quips[key]);
         else
           // regular message
-          send(quips[key].replace(/\$1/g, match[1]));
+          send(quips[key].replace(/\$1/g, match[1]).replace(/\$2/g, match[2]));
       }
     }
   });

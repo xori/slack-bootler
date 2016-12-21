@@ -13,6 +13,11 @@ module.exports = function(engine) {
     "Top o' the mornin’ to ya!",
     "Rise and shine, it's time for wine!",
     "It *is* a good morning to be alive",
+    "Hi, Handsome! How'd you sleep?",
+    "Morning comes whether you set the alarm or not",
+    "Mornin', good-lookin'!",
+    "oh, Good Morning... I see the assassins have failed",
+    "G'day mate!"
   ]
   engine.on(/good morning,? (team|everyone)/i, (m, p, send) => {
     send(engine.random(salutations));

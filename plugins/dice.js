@@ -1,7 +1,7 @@
 const R = require('roll');
 
 module.exports = function(engine) {
-  engine.on(/[\^\s]roll ([0-9d*\/+\-]+)/i, function(message, params, send) {
+  engine.on(/(?:^|\s)roll ([0-9d\s*\/+\-]+)/i, function(message, params, send) {
     let ask = params[1].split(" ");
     let dice = new R();
 
@@ -40,7 +40,7 @@ module.exports.test = function(engine) {
 
     it('should respond appropriately to incorrect syntax', function(done) {
       engine.test('roll 3$16', function(text) {
-        assert.equal(text, "3$16 isn't in standard dice format.");
+        assert.equal(text, "3 isn't in standard dice format.");
         done();
       });
     })

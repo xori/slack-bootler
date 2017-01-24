@@ -18,6 +18,7 @@ module.exports = function(engine) {
     "Mornin', good-lookin'!",
     "oh, Good Morning... I see the assassins have failed",
     "G'day mate!",
+    "Top of the Morning or G'day or whatever you say down here",
     "Every day is a success if you give !!!MAXIMUM EFFORT!!!"
   ]
   engine.on(/good morning,? (team|everyone)/i, (m, p, send) => {

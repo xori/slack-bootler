@@ -20,7 +20,8 @@ module.exports = function(engine) {
     "G'day mate!",
     "Top of the Morning or G'day or whatever you say down here",
     "Every day is a success if you give !!!MAXIMUM EFFORT!!!",
-    "top o' the mornin' to ya laddies"
+    "top o' the mornin' to ya laddies",
+    "Rise and wine, it's time for *hic* Oh God"
   ]
   engine.on(/good morning,? (team|everyone)/i, (m, p, send) => {
     send(engine.random(salutations));

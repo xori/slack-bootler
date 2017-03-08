@@ -1,7 +1,7 @@
 const R = require('roll');
 
 module.exports = function(engine) {
-  engine.on(/(?:^|\s)roll ([1-9]+[0-9d\s*\/+\-]+)/i, function(message, params, send) {
+  engine.on(/(?:^|\s)roll ([1-9]+[0-9b%d\s*\/+\-]*)/i, function(message, params, send) {
     let ask = params[1].split(" ");
     let dice = new R();
 
@@ -32,8 +32,9 @@ module.exports.test = function(engine) {
     });
 
     it('should do complex evaluations', function(done) {
-      engine.test('roll 3d16 4d20*2+5', function(text) {
-        assert(/3d16 4d20\*2\+5 => \d+/.test(text), text);
+	  // 7d50b2 is 'roll 7 d50's and take the best 2'
+      engine.test('roll 4d%+7d50b2*2+d2+5', function(text) {
+        assert(/4d%\+7d50b2\*2\+d2\+5 => \d+/.test(text), text);
         done();
       });
     });

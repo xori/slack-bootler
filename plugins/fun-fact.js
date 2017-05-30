@@ -1,5 +1,5 @@
 module.exports = function(engine) {
-  const feed = "https://www.reddit.com/r/showerthoughts.json"
+  const feed = "https://www.reddit.com/r/showerthoughts.json?limit=50"
   const interval = 1000 * 60 * 60 * 36 // 36 hours
 
   function interestingThought() {

@@ -5,13 +5,13 @@ module.exports = class Engine {
     this.config = require('./ConfigLoader');
     this.brain = require('./Brain');
     this.router = require('./Router');
+    this.http = require('request');
 
     this.plugins = [];
     this._plugins = require('./PluginLoader');
     for(let i = 0; i < this._plugins.length; i++) {
       this._plugins[i](this); // startup.
     }
-    this.http = require('request');
   }
 
   react(message, emoji) {

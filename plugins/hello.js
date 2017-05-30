@@ -23,9 +23,10 @@ module.exports = function(engine) {
     "top o' the mornin' to ya laddies",
     "Rise and wine, it's time for *hic* Oh God"
   ]
-  engine.on(/good morning,? (team|everyone)/i, (m, p, send) => {
-    send(engine.random(salutations));
-  });
+  // attempting shower thoguhts
+  // engine.on(/good morning,? (team|everyone)/i, (m, p, send) => {
+  //   send(engine.random(salutations));
+  // });
 
   engine.on(/^(?:what is|who is|who's|whos)\s?@bot[\s\.\?\!]*$/i, function(message, params, send) {
     send("Hi, I'm a dumb bot! [Make me smarter](https://github.com/xori/bootler)");

@@ -29,7 +29,7 @@ module.exports = function(engine) {
   // });
 
   engine.on(/^(?:what is|who is|who's|whos)\s?@bot[\s\.\?\!]*$/i, function(message, params, send) {
-    send("Hi, I'm a dumb bot! [Make me smarter](https://github.com/xori/bootler)");
+    send("Hi, I'm a dumb bot! [Make me smarter](https://github.com/xori/slack-bootler)");
   });
 
   engine.respond(/--version$/i, function(m, p, send) {

@@ -22,7 +22,7 @@ module.exports = function(engine) {
 
         KarpIt(engine, message)
         .then(_ => {
-          console.log("mtg card karp'd")
+          console.log("mtg card karp'd", `${engine.config.host}/mtg/${message.ts}.gif`)
           web.chat.delete({
             channel: message.channel,
             ts: message.ts,

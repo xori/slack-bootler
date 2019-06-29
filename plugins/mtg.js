@@ -12,12 +12,12 @@ module.exports = function(engine) {
     console.log(`Karping the ${place} channel.`)
   })
   web.users.list().then((info) => {
-    user = (info.members.filter(u => user.indexOf(u.name) >= 0)[0] || {id: ''}).id
+    user = info.members.filter(u => user.indexOf(u.name) >= 0).map(u => u.id)
     console.log(`Karping user ${user}`)
   })
 
   engine.on(/.*/i, function(message, params, send) {
-    if(message.channel === place && message.user === user
+    if(message.channel === place && user.indexOf(message.user) >= 0
       && message.files && message.files.length > 0) {
 
         KarpIt(engine, message)

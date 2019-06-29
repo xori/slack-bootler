@@ -41,8 +41,9 @@ module.exports = function(engine) {
           })
         })
 
+        console.log("GOTCHA", message)
+
     }
-    console.log("GOTCHA", message)
   });
 
 }

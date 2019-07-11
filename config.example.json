@@ -1,4 +1,5 @@
 {
   "token": "ADD-TOKEN-HERE",
-  "wolfram": "WOLFRAM TOKEN"
+  "wolfram": "WOLFRAM TOKEN",
+  "lcbo": "lcboapi.com token"
 }

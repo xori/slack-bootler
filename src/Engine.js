@@ -18,9 +18,10 @@ module.exports = class Engine {
     emoji = emoji.replace(/:/g, '');
     let packet = {
       channel: message.channel,
-      timestamp: message.ts
+      timestamp: message.ts,
+      name: emoji
     };
-    this.client.webClient.apiCall('reactions.add', { name: emoji }, packet)
+    this.client.webClient.apiCall('reactions.add', packet)
   }
 
   ////

@@ -20,7 +20,7 @@ module.exports = class Engine {
       channel: message.channel,
       timestamp: message.ts
     };
-    this.client._chat.makeAPICall('reactions.add', { name: emoji }, packet)
+    this.client.webClient.apiCall('reactions.add', { name: emoji }, packet)
   }
 
   ////

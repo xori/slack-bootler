@@ -34,8 +34,9 @@ bot.on('message', function(message) {
     engine.handle(message, bot);
   } catch (e) {
     let _channel = message.channel;
-    console.log(`${(new Date).toISOString()}:${_channel ? _channel.name : "Unknown"}:${bot.dataStore.getUserById(message.user).name}> ${message.text}`);
-    console.error("ERROR>>>", e, message);
+    // console.log(`${(new Date).toISOString()}:${_channel ? _channel.name : "Unknown"}:${bot.dataStore.getUserById(message.user).name}> ${message.text}`);
+    console.log(`${(new Date).toISOString()}:${_channel ? _channel.name : "Unknown"}:${message.user}> ${message.text}`);
+    console.error("ERROR >>>", e, message);
     // bot.sendMessage("Whoa, had a hard time with that comment. Should probably add that as an [issue](https://github.com/xori/bootler/issues)", message.channel);
   }
 });
